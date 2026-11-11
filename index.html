@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090909" />
+  <meta name="description" content="Bugaura turns vague bug reports into structured, evidence-backed reproduction cases." />
+  <title>Bugaura — Reproduction workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="Bugaura home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span>bugaura</span><span class="brand-beta">PREVIEW</span>
+      </a>
+      <button class="workspace-switcher">
+        <span class="workspace-avatar">L</span>
+        <span class="workspace-copy"><strong>Personal workspace</strong><small>Free plan</small></span>
+        <span class="chevron">⌄</span>
+      </button>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a class="nav-item active" href="#overview" data-view="overview"><span class="nav-icon">◫</span>Overview</a>
+        <a class="nav-item" href="#cases" data-view="cases"><span class="nav-icon">▤</span>All cases <kbd>G A</kbd></a>
+        <a class="nav-item" href="#mine" data-view="mine"><span class="nav-icon">◎</span>My cases</a>
+        <a class="nav-item" href="#assigned" data-view="assigned"><span class="nav-icon">↳</span>Assigned to me</a>
+      </nav>
+      <div class="nav-label nav-label-row">INVESTIGATION <button class="icon-button tiny" title="More filters">···</button></div>
+      <nav class="primary-nav" aria-label="Investigation filters">
+        <a class="nav-item" href="#reproduced" data-view="reproduced"><span class="status-dot reproduced"></span>Reproduced <span class="nav-count">3</span></a>
+        <a class="nav-item" href="#investigating" data-view="investigating"><span class="status-dot investigating"></span>Needs investigation <span class="nav-count">4</span></a>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="github-card">
+        <div class="github-card-top"><span class="github-symbol">⌘</span><span class="connected-pill"><i></i> Connected</span></div>
+        <strong>GitHub integration</strong>
+        <p>Bring issues and reproduction evidence together.</p>
+        <button class="text-button" id="github-settings">Manage connection <span>↗</span></button>
+      </div>
+      <nav class="bottom-nav">
+        <a class="nav-item" href="#settings" data-view="settings"><span class="nav-icon">⚙</span>Settings</a>
+        <button class="nav-item" id="help-button"><span class="nav-icon">?</span>Help & feedback <kbd>⌘ /</kbd></button>
+      </nav>
+      <button class="profile-button"><span class="profile-avatar">LS</span><span><strong>Lakshit</strong><small>lakshit@workspace</small></span><span class="chevron">···</span></button>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>Workspace</span><span class="crumb-slash">/</span><strong id="breadcrumb-current">Overview</strong></div>
+        <div class="topbar-actions">
+          <button class="search-trigger" id="open-search"><span>⌕</span> Search anything <kbd>⌘ K</kbd></button>
+          <button class="icon-button theme-button" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">◐</button>
+          <button class="icon-button notification-button" title="Notifications">♧<i></i></button>
+          <span class="top-avatar">LS</span>
+        </div>
+      </header>
+
+      <section class="content" id="view-overview">
+        <div class="page-heading">
+          <div><div class="eyebrow">TUESDAY, NOVEMBER 11, 2026 <span class="eyebrow-line"></span> YOUR WORKSPACE</div><h1>Good afternoon, Lakshit<span class="heading-period">.</span></h1><p class="page-subtitle">Here's what's happening across your reproductions.</p></div>
+          <button class="button button-primary" id="new-case"><span>＋</span> New case</button>
+        </div>
+
+        <div class="metric-grid">
+          <article class="metric-card"><div class="metric-top"><span>Total cases</span><span class="metric-icon">▤</span></div><div class="metric-value">12</div><div class="metric-foot"><span class="metric-neutral">+3 this week</span><span>Across all projects</span></div></article>
+          <article class="metric-card"><div class="metric-top"><span>Reproduced</span><span class="metric-icon">◎</span></div><div class="metric-value">03</div><div class="metric-foot"><span class="metric-neutral">25% of cases</span><span>Evidence confirmed</span></div></article>
+          <article class="metric-card"><div class="metric-top"><span>In investigation</span><span class="metric-icon">⌁</span></div><div class="metric-value">04</div><div class="metric-foot"><span class="metric-neutral">2 need attention</span><span>Active attempts</span></div></article>
+          <article class="metric-card"><div class="metric-top"><span>Verified fixes</span><span class="metric-icon">✓</span></div><div class="metric-value">02</div><div class="metric-foot"><span class="metric-neutral">Retested</span><span>Across 2 repositories</span></div></article>
+        </div>
+
+        <div class="section-grid">
+          <section class="panel cases-panel">
+            <div class="panel-heading"><div><div class="section-kicker">YOUR QUEUE</div><h2>Recent cases</h2></div><button class="subtle-button" id="view-all">View all <span>↗</span></button></div>
+            <div class="case-toolbar"><div class="segmented" role="tablist"><button class="segment active" data-filter="all">All <span>12</span></button><button class="segment" data-filter="open">Open <span>7</span></button><button class="segment" data-filter="reproduced">Reproduced <span>3</span></button></div><button class="icon-button filter-button" title="Filter cases">☷</button></div>
+            <div class="case-list" id="case-list">
+              <button class="case-row" data-status="investigating" data-title="Dashboard freezes after switching workspaces"><span class="case-type">UI</span><span class="case-main"><strong>Dashboard freezes after switching workspaces</strong><small><span class="repo-mark">⌘</span> hmmlavi / facilityfix <span class="case-separator">·</span> #128 <span class="case-separator">·</span> Updated 18m ago</small></span><span class="status-badge status-investigating">Investigating</span><span class="case-arrow">↗</span></button>
+              <button class="case-row" data-status="reproduced" data-title="API returns 500 on empty filter values"><span class="case-type type-api">API</span><span class="case-main"><strong>API returns 500 on empty filter values</strong><small><span class="repo-mark">⌘</span> hmmlavi / bugaura <span class="case-separator">·</span> #24 <span class="case-separator">·</span> Updated 2h ago</small></span><span class="status-badge status-reproduced">Reproduced</span><span class="case-arrow">↗</span></button>
+              <button class="case-row" data-status="open" data-title="Modal content overflows on smaller screens"><span class="case-type type-ui">UI</span><span class="case-main"><strong>Modal content overflows on smaller screens</strong><small><span class="repo-mark">⌘</span> hmmlavi / veylo <span class="case-separator">·</span> #81 <span class="case-separator">·</span> Updated yesterday</small></span><span class="status-badge status-needs">Needs info</span><span class="case-arrow">↗</span></button>
+              <button class="case-row" data-status="reproduced" data-title="Session expires before upload completes"><span class="case-type type-auth">AUTH</span><span class="case-main"><strong>Session expires before upload completes</strong><small><span class="repo-mark">⌘</span> hmmlavi / sortify-desktop <span class="case-separator">·</span> #16 <span class="case-separator">·</span> Updated yesterday</small></span><span class="status-badge status-reproduced">Reproduced</span><span class="case-arrow">↗</span></button>
+              <button class="case-row" data-status="investigating" data-title="Search results ignore selected sort order"><span class="case-type type-data">DATA</span><span class="case-main"><strong>Search results ignore selected sort order</strong><small><span class="repo-mark">⌘</span> hmmlavi / pustakalaya-lms <span class="case-separator">·</span> #43 <span class="case-separator">·</span> Updated 2d ago</small></span><span class="status-badge status-investigating">Investigating</span><span class="case-arrow">↗</span></button>
+            </div>
+            <div class="panel-footer"><span>Showing 5 of 12 cases</span><button class="text-button" id="load-more">Load more <span>↓</span></button></div>
+          </section>
+
+          <aside class="right-column">
+            <section class="panel activity-panel"><div class="panel-heading"><div><div class="section-kicker">THE PAPER TRAIL</div><h2>Recent activity</h2></div><button class="icon-button tiny" title="Activity options">···</button></div>
+              <div class="activity-list">
+                <div class="activity-item"><span class="activity-avatar avatar-one">LS</span><div><p><strong>You</strong> recorded a reproduction attempt</p><small>API returns 500 on empty filter values</small><time>2 hours ago</time></div></div>
+                <div class="activity-item"><span class="activity-avatar avatar-two">JD</span><div><p><strong>Jordan</strong> added environment details</p><small>Dashboard freezes after switching workspaces</small><time>4 hours ago</time></div></div>
+                <div class="activity-item"><span class="activity-avatar avatar-three">LS</span><div><p><strong>You</strong> verified a fix</p><small>Session expires before upload completes</small><time>Yesterday</time></div></div>
+                <div class="activity-item"><span class="activity-avatar avatar-four">MK</span><div><p><strong>Mika</strong> linked a GitHub issue</p><small>Modal content overflows on smaller screens</small><time>Yesterday</time></div></div>
+              </div><button class="activity-link">Open activity log <span>↗</span></button>
+            </section>
+            <section class="proof-card"><div class="proof-icon">⌁</div><div class="section-kicker">THE BUGAURA DIFFERENCE</div><h3>Don't just say it broke.<br/>Show how it broke.</h3><p>Every attempt, environment and piece of evidence stays connected to the case.</p><button class="proof-link" id="learn-proof">Explore reproduction proof <span>↗</span></button><div class="proof-watermark">B.</div></section>
+          </aside>
+        </div>
+        <footer class="app-footer"><span>BUGAURA <span class="footer-version">EARLY ACCESS · 0.1.0</span></span><span>Built around evidence, not assumptions.</span><span><a href="#docs">Documentation</a><a href="#changelog">Changelog</a></span></footer>
+      </section>
+      <section class="content alternate-view" id="view-cases" hidden><div class="page-heading"><div><div class="eyebrow">WORKSPACE / CASES</div><h1>All cases<span class="heading-period">.</span></h1><p class="page-subtitle">Every reproduction, in one place.</p></div><button class="button button-primary" id="new-case-alt">＋ New case</button></div><div class="panel empty-state"><div class="empty-symbol">▤</div><h2>Your case workspace</h2><p>Use the overview to explore sample cases, or create a new reproduction case.</p><button class="button button-secondary" id="back-overview">Back to overview</button></div></section>
+    </main>
+  </div>
+
+  <div class="command-overlay" id="command-overlay" aria-hidden="true"><div class="command-dialog"><div class="command-input-row"><span>⌕</span><input id="command-input" placeholder="Search cases, actions, settings..." autocomplete="off"/><kbd>ESC</kbd></div><div class="command-label">QUICK ACTIONS</div><button class="command-option" data-action="new"><span>＋</span><span><strong>Create a new case</strong><small>Start a structured reproduction</small></span><kbd>N</kbd></button><button class="command-option" data-action="overview"><span>◫</span><span><strong>Go to overview</strong><small>Workspace dashboard</small></span><kbd>G O</kbd></button><button class="command-option" data-action="cases"><span>▤</span><span><strong>Browse all cases</strong><small>Find a reproduction case</small></span><kbd>G A</kbd></button><div class="command-hint">Navigate with <kbd>↑</kbd> <kbd>↓</kbd> · Select with <kbd>↵</kbd></div></div></div>
+  <div class="modal-overlay" id="case-modal" aria-hidden="true"><form class="case-modal" id="case-form"><div class="modal-heading"><div><div class="section-kicker">NEW REPRODUCTION</div><h2>Create a case</h2></div><button type="button" class="icon-button" id="close-modal">×</button></div><label for="case-title">What went wrong?</label><input id="case-title" name="title" required maxlength="120" placeholder="e.g. Checkout fails when applying a discount"/><label for="case-repo">Repository</label><select id="case-repo" name="repo"><option>hmmlavi / bugaura</option><option>hmmlavi / facilityfix</option><option>hmmlavi / veylo</option><option>Other / not linked yet</option></select><label for="case-description">What did you expect to happen?</label><textarea id="case-description" name="description" rows="3" placeholder="A short description gives the investigation a starting point..."></textarea><div class="modal-actions"><button type="button" class="button button-secondary" id="cancel-modal">Cancel</button><button type="submit" class="button button-primary">Create case <span>↗</span></button></div></form></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js"></script>
+</body>
+</html>
